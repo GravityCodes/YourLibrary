@@ -1,6 +1,10 @@
+const addBookInformationBtn = document.querySelectorAll(".add-btn");
+const dialog = document.querySelector("dialog");
+
+const addBookForm = document.querySelector("#add-book-form")
+
 const myLibrary = [];
-const addBookBtn = document.querySelectorAll(".add-btn");
-const dialog = document.querySelector("dialog")
+
 // Book  function constructor
 function Book(name, author, pages, read){
     this.name = name;
@@ -14,7 +18,9 @@ function addBookToLibrary() {
     
 }
 
-
-addBookBtn.forEach((btn) => {
+// Open dialog to enter book information
+addBookInformationBtn.forEach((btn) => {
     btn.addEventListener('click', () => dialog.showModal());
 });
+
+//
