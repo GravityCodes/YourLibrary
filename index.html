@@ -42,17 +42,32 @@
     </div>
     <dialog>
         <form method="dialog">
+
             <h3>Enter Book Details:</h3>
+            <p> Required fields are marked with an <span aria-label="Required">*</span></p>
 
-           <label for="Title">Title</label> 
-           <input type="text" name="Book_title" id="Title">
+           <div class="input-container">
+                <label for="Title">Title</label> 
+                <input type="text" name="Book_title" id="Title" title="Enter the name of the book" required>
+           </div>
+           
 
-           <label for="Author">Author</label>
-           <input type="text" name="Book_author" id="Author">
+           <div class="input-container">
+               <label for="Author">Author</label>
+               <input type="text" name="Book_author" id="Author"  title="Enter the author's name of the book" required>
+           </div>
 
-           <label for="pages"># of Pages</label>
-           <input type="text" name="Book_pages" pattern="\d*" id="pages">
+           <div class="input-container">
+               <label for="pages" > Number of Pages</label>
+               <input type="text" name="Book_pages" pattern="\d*" id="pages" title="Enter the number of pages of the book" required>
+           </div>
 
+           <div class="input-container">
+               <label for="read">Have you finished this book?</label>
+               <input type="checkbox" name="Book_read" id="read" >
+           </div>
+
+           <button type="submit">Add Book</button>
         </form>
     </dialog>
 </body>

@@ -16,6 +16,7 @@
 * {
     margin: 0;
     line-height: calc(1em + 0.5rem);
+    padding: 0;
 }
 
 
@@ -175,7 +176,52 @@ footer {
 
 dialog {
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
+    background-color: var(--c-background);
+}
+
+h3 {
+    font-weight: 600;
+    color: var(--c-primary);
+}
+
+dialog p {
+    font-weight: 100;
+    font-style: italic;
+    color: var(--c-neutral);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 1rem;
+}
+
+.input-container {
+    /* display: grid;
+
+    grid-template-columns: repeat(auto-fill, (600px, 1fr)); */
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input {
+    background-color: var(--c-background);
+    border: 1px solid var(--c-primary);
+    width: max(200px);
+    outline: none;
+    padding:  5px;
+}
+
+input:focus {
+    border: 1px solid var(--c-neutral-dark);
+}
+
+label {
+    font-weight: 300;
 }
