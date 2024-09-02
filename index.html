@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Your Library</title>
+</head>
+<body>
+    <div id="page-container">
+        <header>
+            <div id="logo">
+                Your Library
+            </div>
+            <button type="button" class="add-button"> + </button>
+        </header>
+        <main>
+            
+            <div id="book-container">
+                <div class="book-card">
+                    <p class="book-title"> Paradigm</p>
+                    <p class="book-author"> Johan Mesa</p>
+                    <p class="book-pages">216 pages</p>
+                    <label for="book-read" class="book-read">Finished</label>
+                    <input type="checkbox" name="read" id="book-read">
+                </div>
+                <div class="book-card">
+                    <p class="book-title"> How To Be Beautiful</p>
+                    <p class="book-author"> Denisse Rodriguez</p>
+                    <p class="book-pages">154 pages</p>
+                    <label for="book-read" class="book-read">Finished</label>
+                    <input type="checkbox" name="read" id="book-read">
+                </div>
+                <button type="button" class="add-button big-button"> + </button>
+            </div>
+
+            <p id="tutorial"> <em>Click the plus button to add a book</em></p>
+            
+        </main>
+        <footer>
+            <p>Created by <span class="my-name">Johan Mesa</span></p>
+        </footer>
+    </div>
+</body>
+</html>
