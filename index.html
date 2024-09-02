@@ -47,19 +47,22 @@
             <p> Required fields are marked with an <span aria-label="Required">*</span></p>
 
            <div class="input-container">
-                <label for="Title">Title</label> 
+                <label for="Title">Title<span aria-label="Required">*</span></label> 
                 <input type="text" name="Book_title" id="Title" title="Enter the name of the book" required>
+                <span></span>
            </div>
            
 
            <div class="input-container">
-               <label for="Author">Author</label>
+               <label for="Author">Author<span aria-label="Required">*</span></label>
                <input type="text" name="Book_author" id="Author"  title="Enter the author's name of the book" required>
+               <span></span>
            </div>
 
            <div class="input-container">
-               <label for="pages" > Number of Pages</label>
+               <label for="pages" > Number of Pages<span aria-label="Required">*</span></label>
                <input type="text" name="Book_pages" pattern="\d*" id="pages" title="Enter the number of pages of the book" required>
+               <span></span>
            </div>
 
            <div class="input-container">

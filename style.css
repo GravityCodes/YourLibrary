@@ -210,6 +210,10 @@ form {
     gap: 5px;
 }
 
+span[aria-label="Required"] {
+    color: red;
+}
+
 input {
     background-color: var(--c-background);
     border: 1px solid var(--c-primary);
@@ -217,6 +221,21 @@ input {
     outline: none;
     padding:  5px;
 }
+
+input + span {
+    position: relative;
+}
+
+input:valid + span::after {
+    content: url('./svg/check.svg');
+
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    transform: translate(210px, -40px);
+    color: var(--c-primary);
+}
+
 
 input:focus {
     border: 1px solid var(--c-neutral-dark);
