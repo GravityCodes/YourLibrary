@@ -14,34 +14,44 @@
             <div id="logo">
                 Your Library
             </div>
-            <button type="button" class="add-button"> + </button>
+            <button type="button" class="add-btn"> + </button>
         </header>
         <main>
-            
-            <div id="book-container">
-                <div class="book-card">
+            <button type="button" class="add-btn big-btn"> + </button>
+            <p id="tutorial"> <em>Click the plus button to add a book</em></p>
+             <div id="book-container">
+
+                <!-- <div class="book-card">
                     <p class="book-title"> Paradigm</p>
                     <p class="book-author"> Johan Mesa</p>
                     <p class="book-pages">216 pages</p>
                     <label for="book-read" class="book-read">Finished</label>
-                    <input type="checkbox" name="read" id="book-read">
-                </div>
-                <div class="book-card">
-                    <p class="book-title"> How To Be Beautiful</p>
-                    <p class="book-author"> Denisse Rodriguez</p>
-                    <p class="book-pages">154 pages</p>
-                    <label for="book-read" class="book-read">Finished</label>
-                    <input type="checkbox" name="read" id="book-read">
-                </div>
-                <button type="button" class="add-button big-button"> + </button>
+                    <input type="checkbox" name="read" id="book-read">  
+                </div> -->
+
+                
             </div>
 
-            <p id="tutorial"> <em>Click the plus button to add a book</em></p>
+            
             
         </main>
         <footer>
             <p>Created by <span class="my-name">Johan Mesa</span></p>
         </footer>
+        
     </div>
+    <dialog>
+        <form method="dialog">
+            <h3>Enter Book Details:</h3>
+
+           <label for="Title">Title</label> 
+           <input type="text" name="Book_title" id="Title">
+
+           <label for="Author">Author</label>
+           <input type="text" name="Book_author" id="Author">
+
+
+        </form>
+    </dialog>
 </body>
 </html>

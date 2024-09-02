@@ -109,7 +109,7 @@ footer {
     font-weight: 700;
 }
 
-.add-button {
+.add-btn {
     height: 50px;
     width: 50px;
     font-size: 4rem;
@@ -121,14 +121,14 @@ footer {
     border-radius: 10px;
 }
 
-.big-button {
-    height: 200px;
+.big-btn {
+    height: 300px;
     width: 200px;
     font-size: 6rem;
     justify-self: center;
 }
 
-.add-button:hover {
+.add-btn:hover {
     background-color: var(--c-primary-light);
 }
 
@@ -141,7 +141,7 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(300px,1fr));
     gap: 15px;
 }
 
