@@ -1,7 +1,7 @@
-const addBookInformationBtn = document.querySelectorAll(".add-btn");
+const BookInformationBtn = document.querySelectorAll(".add-btn");
 const dialog = document.querySelector("dialog");
 
-const addBookForm = document.querySelector("#add-book-form")
+const BookForm = document.querySelector("#add-book-form")
 
 const myLibrary = [];
 
@@ -13,14 +13,36 @@ function Book(name, author, pages, read){
     this.read = read;
 }
 
+//Create new book instance function
+function createBook(){
+    let bookTitle = document.querySelector("#Title").value;
+    let bookAuthor = document.querySelector("#Author").value;
+    let bookPages = document.querySelector("#pages").value;
+    let bookRead = document.querySelector("read");
 
-function addBookToLibrary() {
-    
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+
+    return book;
 }
 
+
+//Add new book to library
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
+
+
 // Open dialog to enter book information
-addBookInformationBtn.forEach((btn) => {
+BookInformationBtn.forEach((btn) => {
     btn.addEventListener('click', () => dialog.showModal());
 });
 
-//
+//Create new book
+BookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    dialog.close();
+    newBook = createBook();
+
+    addBookToLibrary(newBook);
+});
+
