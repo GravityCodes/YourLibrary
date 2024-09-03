@@ -1,11 +1,12 @@
 const BookInformationBtn = document.querySelectorAll(".add-btn");
 const dialog = document.querySelector("dialog");
 
-const BookForm = document.querySelector("#add-book-form")
+const bookContainer = document.querySelector("#book-container");
+const bookForm = document.querySelector("#add-book-form");
 
 const myLibrary = [];
 
-// Book  function constructor
+// Book function constructor
 function Book(name, author, pages, read){
     this.name = name;
     this.author = author;
@@ -31,6 +32,42 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+//Add book to page
+
+function addBookToPage(book) {
+   
+    let bookCard = document.createElement("div.book-card");
+    bookCard.setAttribute("class", "book-card");
+
+    let addBookTitle = document.createElement("p");
+    addBookTitle.setAttribute("class", "book-title");
+
+    let addBookAuthor = document.createElement("p");
+    addBookAuthor.setAttribute("class", "book-author");
+
+    let addBookPages = document.createElement("p");
+    addBookPages.setAttribute("class", "book-pages");
+
+    let addBookLabel = document.createElement("label");
+    addBookLabel.setAttribute("for", "book-read");
+    
+    let addBookInput = document.createElement("input");
+    addBookInput.setAttribute("type", "checkbox");
+    addBookInput.setAttribute("name", "read");
+    addBookInput.setAttribute("id", "book-read");
+
+
+    addBookTitle.textContent = book.name;
+    addBookAuthor.textContent = book.author;
+    addBookPages.textContent = book.pages;
+    addBookLabel.textContent = "Finished";
+    addBookInput.value = book.read;
+
+    [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput].forEach((book) => bookCard.appendChild(book));
+
+    bookContainer.appendChild(bookCard);
+}
+
 
 // Open dialog to enter book information
 BookInformationBtn.forEach((btn) => {
@@ -38,11 +75,15 @@ BookInformationBtn.forEach((btn) => {
 });
 
 //Create new book
-BookForm.addEventListener('submit', (e) => {
+bookForm.addEventListener('submit', (e) => {
     e.preventDefault();
     dialog.close();
-    newBook = createBook();
+    // newBook = createBook();
 
-    addBookToLibrary(newBook);
+    
+
+    addBookToLibrary(createBook());
+    addBookToPage(myLibrary[myLibrary.length - 1]);
+
 });
 
