@@ -19,7 +19,7 @@ function createBook(){
     let bookTitle = document.querySelector("#Title").value;
     let bookAuthor = document.querySelector("#Author").value;
     let bookPages = document.querySelector("#pages").value;
-    let bookRead = document.querySelector("read");
+    let bookRead = document.querySelector("#read").checked;
 
     let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
 
@@ -36,7 +36,7 @@ function addBookToLibrary(book) {
 
 function addBookToPage(book) {
    
-    let bookCard = document.createElement("div.book-card");
+    let bookCard = document.createElement("div");
     bookCard.setAttribute("class", "book-card");
 
     let addBookTitle = document.createElement("p");
@@ -61,7 +61,7 @@ function addBookToPage(book) {
     addBookAuthor.textContent = book.author;
     addBookPages.textContent = book.pages;
     addBookLabel.textContent = "Finished";
-    addBookInput.value = book.read;
+    addBookInput.checked = book.read;
 
     [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput].forEach((book) => bookCard.appendChild(book));
 

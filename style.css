@@ -148,6 +148,7 @@ footer {
 
 .book-card {
     justify-self: center;
+    height: 300px;
     width: 200px;
     background-color: var(--c-neutral-dark);
     border-radius: 10px;
