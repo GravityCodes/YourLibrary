@@ -59,7 +59,7 @@ function addBookToPage(book) {
 
     addBookTitle.textContent = book.name;
     addBookAuthor.textContent = book.author;
-    addBookPages.textContent = book.pages;
+    addBookPages.textContent = book.pages + " pages";
     addBookLabel.textContent = "Finished";
     addBookInput.checked = book.read;
 

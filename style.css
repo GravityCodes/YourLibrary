@@ -257,3 +257,35 @@ input:focus {
 label {
     font-weight: 300;
 }
+
+label[for="book-read"] {
+    color: var(--c-primary);
+    font-size: large;
+    font-weight: 400;
+}
+
+/* input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--c-neutral-dark);
+    border: 1px solid var(--c-primary);
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+input[type="checkbox"]:checked {
+    background-color: var(--c-primary);
+    color: var(--c-primary);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    background-color: var(--c-primary);
+    height: 10px;
+    width: 10px;
+    position: absolute;
+} */
