@@ -1,6 +1,6 @@
 const BookInformationBtn = document.querySelectorAll(".add-btn");
 const dialog = document.querySelector("dialog");
-
+const cancelBtn = document.querySelector("#cancel-btn");
 const bookContainer = document.querySelector("#book-container");
 const bookForm = document.querySelector("#add-book-form");
 let count = 0;
@@ -75,6 +75,10 @@ function addBookToPage(book) {
 BookInformationBtn.forEach((btn) => {
     btn.addEventListener('click', () => dialog.showModal());
 });
+
+//quit dialog
+
+cancelBtn.addEventListener('click', () => dialog.close());
 
 //Create new book
 bookForm.addEventListener('submit', (e) => {
