@@ -150,10 +150,10 @@ footer {
     justify-self: center;
     display: grid;
 
-    grid-template: 0.1fr / repeat(2, 1fr);
-
+    grid-template: 0.1fr / repeat(3, 1fr);
+    
     height: 300px;
-   /* width: 200px;*/
+
     background-color: var(--c-neutral-dark);
     border-radius: 10px;
     border-top-left-radius: 0px;
@@ -176,12 +176,13 @@ footer {
 }
 
 .book-title {
-    grid-column: span 2;
+    grid-column: span 3;
     font-size: 1.5rem;
     color: var(--c-neutral-dark);
     font-weight: 600;
     background-color: var(--c-background);
     text-align: center;
+    padding: 4px;
     border-radius: 2px;
     border: 3px solid var(--c-neutral);
     box-shadow: inset 1px 1px 2px black, inset -1px -1px 2px black;
@@ -190,16 +191,22 @@ footer {
 }
 
 .book-author {
-    align-self: end;
+    grid-column: span 3;
+    grid-row: 2;
+    align-self: top;
+    justify-self: center;
     font-style: italic;
     color: var(--c-primary);
 }
 
 .book-pages {
+    grid-row: 3;
+    grid-column: 1;
     align-self: end;
-    justify-self: end;
+    justify-self: center;
     color: var(--c-primary-light);
     font-size: 0.9rem;
+    text-align: center;
 
 }
 
@@ -208,7 +215,10 @@ dialog {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);   
+    width: 270px;
     background-color: var(--c-background);
+    border: none;
+    border-radius: 10px;
 }
 
 h3 {
@@ -274,12 +284,12 @@ label {
     font-weight: 300;
 }
 
-label[for="book-read"] {
-    grid-row: 2;
-    grid-column: 1;
+.book-label-read {
+    grid-row: 3;
+    grid-column: 2;
     justify-self: end;
-    align-self: center;
-    color: var(--c-primary);
+    align-self: end;
+    color: var(--c-primary-light);
     font-size: large;
     font-weight: 400;
 }
@@ -287,12 +297,13 @@ label[for="book-read"] {
 
 
 input[type="checkbox"] {
-    grid-row: 2;
-    grid-column: 2;
-    align-self: center;
+    grid-row: 3;
+    grid-column: 3;
+    align-self: end;
+    justify-content: start;
 
     appearance: none;
-    background-color: var(--c-neutral-dark);
+    background-color: transparent;
     border: 1px solid var(--c-primary);
     width: 35px;
     height: 35px;
@@ -321,4 +332,30 @@ input[type="checkbox"]::after {
 input[type="checkbox"]:checked::after {
 
     transform: translate(-3px, -3px) scale(1);
+}
+
+#add-book-btn {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    border: 1px solid var(--c-primary);
+    color: var(--c-primary);
+    border-radius: 10px;
+    padding: 15px;
+    align-self: center;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#add-book-btn:hover {
+    color: var(--c-background);
+    background-color: var(--c-primary);
+}
+
+#form-checkbox {
+    flex-direction: row;
+}
+
+#form-checkbox > label {
+    align-self: center;
 }

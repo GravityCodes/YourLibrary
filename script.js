@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 
 const bookContainer = document.querySelector("#book-container");
 const bookForm = document.querySelector("#add-book-form");
+let count = 0;
 
 const myLibrary = [];
 
@@ -35,7 +36,7 @@ function addBookToLibrary(book) {
 //Add book to page
 
 function addBookToPage(book) {
-   
+    ++count;
     let bookCard = document.createElement("div");
     bookCard.setAttribute("class", "book-card");
 
@@ -49,12 +50,13 @@ function addBookToPage(book) {
     addBookPages.setAttribute("class", "book-pages");
 
     let addBookLabel = document.createElement("label");
-    addBookLabel.setAttribute("for", "book-read");
+    addBookLabel.setAttribute("for", `book-read${count}`);
+    addBookLabel.setAttribute("class", "book-label-read");
     
     let addBookInput = document.createElement("input");
     addBookInput.setAttribute("type", "checkbox");
     addBookInput.setAttribute("name", "read");
-    addBookInput.setAttribute("id", "book-read");
+    addBookInput.setAttribute("id", `book-read${count}`);
 
 
     addBookTitle.textContent = book.name;
