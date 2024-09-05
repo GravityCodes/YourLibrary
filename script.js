@@ -60,7 +60,7 @@ function addBookToPage(book) {
     addBookTitle.textContent = book.name;
     addBookAuthor.textContent = book.author;
     addBookPages.textContent = book.pages + " pages";
-    addBookLabel.textContent = "Finished";
+    addBookLabel.textContent = "read";
     addBookInput.checked = book.read;
 
     [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput].forEach((book) => bookCard.appendChild(book));
