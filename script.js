@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const cancelBtn = document.querySelector("#cancel-btn");
 const bookContainer = document.querySelector("#book-container");
 const bookForm = document.querySelector("#add-book-form");
+
 let count = 0;
 
 const myLibrary = [];
@@ -14,6 +15,8 @@ function Book(name, author, pages, read){
     this.pages = pages;
     this.read = read;
 }
+
+
 
 //Create new book instance function
 function createBook(){
@@ -37,6 +40,9 @@ function addBookToLibrary(book) {
 
 function addBookToPage(book) {
     ++count;
+
+    
+
     let bookCard = document.createElement("div");
     bookCard.setAttribute("class", "book-card");
 
@@ -57,7 +63,12 @@ function addBookToPage(book) {
     addBookInput.setAttribute("type", "checkbox");
     addBookInput.setAttribute("name", "read");
     addBookInput.setAttribute("id", `book-read${count}`);
+    addBookInput.setAttribute("class", "read-checkbox");
 
+    let bookRemoveBtn = document.createElement("button");
+    bookRemoveBtn.setAttribute("type", "button");
+    bookRemoveBtn.setAttribute("class", "remove-btn");
+    bookRemoveBtn.textContent = "Remove";
 
     addBookTitle.textContent = book.name;
     addBookAuthor.textContent = book.author;
@@ -65,9 +76,11 @@ function addBookToPage(book) {
     addBookLabel.textContent = "read";
     addBookInput.checked = book.read;
 
-    [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput].forEach((book) => bookCard.appendChild(book));
+    [ addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput, bookRemoveBtn].forEach((book) => bookCard.appendChild(book));
 
     bookContainer.appendChild(bookCard);
+
+
 }
 
 
@@ -77,7 +90,6 @@ BookInformationBtn.forEach((btn) => {
 });
 
 //quit dialog
-
 cancelBtn.addEventListener('click', () => dialog.close());
 
 //Create new book
@@ -92,4 +104,3 @@ bookForm.addEventListener('submit', (e) => {
     addBookToPage(myLibrary[myLibrary.length - 1]);
 
 });
-
