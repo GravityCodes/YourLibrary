@@ -3,6 +3,7 @@ const dialog = document.querySelector("dialog");
 const cancelBtn = document.querySelector("#cancel-btn");
 const bookContainer = document.querySelector("#book-container");
 const bookForm = document.querySelector("#add-book-form");
+const bigButton = document.querySelector(".big-btn");
 
 let count = 0;
 
@@ -111,8 +112,8 @@ bookForm.addEventListener('submit', (e) => {
 
     addBookToLibrary(createBook());
     addBookToPage(myLibrary[myLibrary.length - 1]);    
-
-
+    bigButton.remove();
+    
     });
 
 
