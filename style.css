@@ -381,7 +381,9 @@ input[type="checkbox"]:checked::after {
 #cancel-btn{
     position: absolute;
     transform: translate(210px, -8px);
-
+    border-radius: 10px;
+    border: 1px solid var(--c-primary);
+    color: var(--c-primary);
     padding: 2px 10px;
     background-color: var(--c-background);
     font-size: small;
