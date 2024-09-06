@@ -6,15 +6,17 @@ const bookForm = document.querySelector("#add-book-form");
 
 let count = 0;
 
-const myLibrary = [];
+let myLibrary = [];
 
 // Book function constructor
-function Book(name, author, pages, read){
+function Book(name, author, pages, read, bookId){
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.bookId = bookId;
 }
+
 
 
 
@@ -24,8 +26,10 @@ function createBook(){
     let bookAuthor = document.querySelector("#Author").value;
     let bookPages = document.querySelector("#pages").value;
     let bookRead = document.querySelector("#read").checked;
+    let bookId;
+        
 
-    let book = new Book(bookTitle, bookAuthor, bookPages, bookRead);
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookRead, bookId);
 
     return book;
 }
@@ -45,6 +49,7 @@ function addBookToPage(book) {
 
     let bookCard = document.createElement("div");
     bookCard.setAttribute("class", "book-card");
+    bookCard.setAttribute("id", `book-${count}`);
 
     let addBookTitle = document.createElement("p");
     addBookTitle.setAttribute("class", "book-title");
@@ -75,13 +80,18 @@ function addBookToPage(book) {
     addBookPages.textContent = book.pages + " pages";
     addBookLabel.textContent = "read";
     addBookInput.checked = book.read;
+    book.bookId = `book-${count}`;
 
-    [ addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput, bookRemoveBtn].forEach((book) => bookCard.appendChild(book));
+
+    [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput, bookRemoveBtn].forEach((bookElement) => bookCard.appendChild(bookElement));
 
     bookContainer.appendChild(bookCard);
 
-
+    
+    
 }
+
+
 
 
 // Open dialog to enter book information
@@ -98,9 +108,19 @@ bookForm.addEventListener('submit', (e) => {
     dialog.close();
     // newBook = createBook();
 
-    
 
     addBookToLibrary(createBook());
-    addBookToPage(myLibrary[myLibrary.length - 1]);
+    addBookToPage(myLibrary[myLibrary.length - 1]);    
 
+
+    });
+
+
+//Remove book
+bookContainer.addEventListener('click', e => {
+    if(e.target.className === "remove-btn") {
+        bookContainer.removeChild(e.target.parentElement);
+
+        myLibrary = myLibrary.filter((book) => book.bookId !== e.target.parentElement.id);
+    }
 });
