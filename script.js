@@ -1,3 +1,5 @@
+/*
+****************** OLD CODE ************************************ 
 const BookInformationBtn = document.querySelectorAll(".add-btn");
 const dialog = document.querySelector("dialog");
 const cancelBtn = document.querySelector("#cancel-btn");
@@ -125,3 +127,67 @@ bookContainer.addEventListener('click', e => {
         myLibrary = myLibrary.filter((book) => book.bookId !== e.target.parentElement.id);
     }
 });
+**********************************************************************************************
+*/
+
+/* New Code using ES6 Classes */
+
+class Book {
+    constructor(name, author, pages, isRead) {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    getIsRead = () => this.read;
+    changeRead = () => this.read = !this.read;
+}
+
+const libraryController = (function (){
+    
+    let library = [];
+
+    function addNewBook(name,author,pages,isRead){
+        return library.push(new Book(name, author, pages, isRead));
+    }
+
+    return {addNewBook, library}
+})();
+
+const screenController = (function () {
+    const $openDialog = document.querySelectorAll(".add-btn");
+    const $dialog = document.querySelector("dialog");
+    const dialogCancelBtn = "cancel-btn";
+    const $bookContainer = document.querySelector("#book-container");
+    const $bookForm = document.querySelector("#add-book-form");
+    const $bigButton = document.querySelector(".big-btn");
+
+
+    function closeDialog (e) {
+        if(e.target.id === dialogCancelBtn){
+            $dialog.close();
+        }
+    }
+    $dialog.addEventListener('click', closeDialog);
+
+    function formSubmitHandler (name, author, pages, isRead) {
+        libraryController.addNewBook(name, author,pages,isRead);
+    }
+    $dialog.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        //Get items from form submit
+        let name = e.target[1].value;
+        let author = e.target[2].value;
+        let pages = e.target[3].value;
+        let isRead = e.target[4].checked;
+
+        addNewBookSubmit(name, author, pages, isRead);
+        console.log(e);
+        $dialog.close()
+    });
+
+    return {$dialog}
+
+})();
