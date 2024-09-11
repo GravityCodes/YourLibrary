@@ -133,7 +133,11 @@ bookContainer.addEventListener('click', e => {
 /* New Code using ES6 Classes */
 
 class Book {
+    //Static property to keep track of book id.
+    static id = 1
+
     constructor(name, author, pages, isRead) {
+        this.id = Book.id++
         this.name = name;
         this.author = author;
         this.pages = pages;
@@ -152,7 +156,12 @@ const libraryController = (function (){
         return library.push(new Book(name, author, pages, isRead));
     }
 
-    return {addNewBook, library}
+    function removeBookById(id) {
+        index = library.findIndex(book => book.id === id);
+        library.splice(index, 1);
+    }
+
+    return {addNewBook, library, removeBookById}
 })();
 
 const screenController = (function () {
@@ -171,22 +180,27 @@ const screenController = (function () {
     }
     $dialog.addEventListener('click', closeDialog);
 
-    function formSubmitHandler (name, author, pages, isRead) {
-        libraryController.addNewBook(name, author,pages,isRead);
-    }
-    $dialog.addEventListener('submit', (e) => {
+    function formSubmitHandler (e) {
         e.preventDefault();
 
-        //Get items from form submit
+        // Turn the values from the form
+        // into variables for easy use.
         let name = e.target[1].value;
         let author = e.target[2].value;
         let pages = e.target[3].value;
         let isRead = e.target[4].checked;
-
-        addNewBookSubmit(name, author, pages, isRead);
-        console.log(e);
+        
+        //Add new book to the library
+        libraryController.addNewBook(name, author,pages,isRead);
         $dialog.close()
-    });
+    }
+    $dialog.addEventListener('submit', formSubmitHandler);
+
+
+    function openDialog() {
+        $dialog.showModal();
+    }
+    $openDialog.forEach((btn) => btn.addEventListener('click', openDialog));
 
     return {$dialog}
 
