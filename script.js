@@ -161,7 +161,14 @@ const libraryController = (function (){
         library.splice(index, 1);
     }
 
-    return {addNewBook, library, removeBookById}
+    function getLatestBook () {return library.at(-1)};
+
+    function changeBookReadStatusById (id) {
+        index = library.findIndex(book => book.id === id);
+        library.at(index).changeRead();
+     }
+
+    return {addNewBook, library, removeBookById, getLatestBook, changeBookReadStatusById}
 })();
 
 const screenController = (function () {
@@ -169,9 +176,53 @@ const screenController = (function () {
     const $dialog = document.querySelector("dialog");
     const dialogCancelBtn = "cancel-btn";
     const $bookContainer = document.querySelector("#book-container");
-    const $bookForm = document.querySelector("#add-book-form");
     const $bigButton = document.querySelector(".big-btn");
+    const library = libraryController;
 
+    function createBookCard(name, author, pages, isRead, Id) {
+
+        let bookCard = document.createElement("div");
+        bookCard.setAttribute("class", "book-card");
+        bookCard.setAttribute("id", `book-${Id}`);
+    
+        let addBookTitle = document.createElement("p");
+        addBookTitle.setAttribute("class", "book-title");
+    
+        let addBookAuthor = document.createElement("p");
+        addBookAuthor.setAttribute("class", "book-author");
+    
+        let addBookPages = document.createElement("p");
+        addBookPages.setAttribute("class", "book-pages");
+    
+        let addBookLabel = document.createElement("label");
+        addBookLabel.setAttribute("for", `book-read${Id}`);
+        addBookLabel.setAttribute("class", "book-label-read");
+        
+        let addBookInput = document.createElement("input");
+        addBookInput.setAttribute("type", "checkbox");
+        addBookInput.setAttribute("name", "read");
+        addBookInput.setAttribute("id", `book-read${Id}`);
+        addBookInput.setAttribute("class", "read-checkbox");
+    
+        let bookRemoveBtn = document.createElement("button");
+        bookRemoveBtn.setAttribute("type", "button");
+        bookRemoveBtn.setAttribute("class", "remove-btn");
+        bookRemoveBtn.textContent = "Remove";
+    
+        addBookTitle.textContent = name;
+        addBookAuthor.textContent = author;
+        addBookPages.textContent = pages + " pages";
+        addBookLabel.textContent = "read";
+        addBookInput.checked = isRead;
+    
+        [addBookTitle, addBookAuthor, addBookPages, addBookLabel, addBookInput, bookRemoveBtn].forEach((bookElement) => bookCard.appendChild(bookElement));
+    
+        $bookContainer.appendChild(bookCard);
+    }
+
+    function removeBigButton () {
+        $bigButton.parentElement.removeChild($bigButton);
+    }
 
     function closeDialog (e) {
         if(e.target.id === dialogCancelBtn){
@@ -189,9 +240,12 @@ const screenController = (function () {
         let author = e.target[2].value;
         let pages = e.target[3].value;
         let isRead = e.target[4].checked;
+
+        //Add new book to the library and screen
+        library.addNewBook(name, author,pages,isRead);
+        createBookCard(name, author, pages, isRead, library.getLatestBook().id);
         
-        //Add new book to the library
-        libraryController.addNewBook(name, author,pages,isRead);
+        removeBigButton();
         $dialog.close()
     }
     $dialog.addEventListener('submit', formSubmitHandler);
@@ -202,6 +256,22 @@ const screenController = (function () {
     }
     $openDialog.forEach((btn) => btn.addEventListener('click', openDialog));
 
-    return {$dialog}
+
+    function bookContainerHandler(e) {
+        bookId = e.srcElement.parentElement.id;
+
+        if(e.target.textContent === "Remove"){
+           library.removeBookById(bookId);
+           $bookContainer.removeChild(e.srcElement.parentElement);
+        }
+        else if(e.target.className === "read-checkbox") {
+            library.changeBookReadStatusById(bookId);
+        }
+        else {
+            return false;
+        }
+        
+    }
+    $bookContainer.addEventListener('click', bookContainerHandler);
 
 })();
