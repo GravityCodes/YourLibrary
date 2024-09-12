@@ -88,7 +88,12 @@ const screenController = (function () {
     }
 
     function removeBigButton () {
-        $bigButton.parentElement.removeChild($bigButton);
+        if($bigButton.parentElement != null){
+            $bigButton.parentElement.removeChild($bigButton);
+        }   
+        else {
+            return false;
+        }
     }
 
     function closeDialog (e) {
@@ -113,7 +118,7 @@ const screenController = (function () {
         createBookCard(name, author, pages, isRead, library.getLatestBook().id);
         
         removeBigButton();
-        $dialog.close()
+        $dialog.close();
     }
     $dialog.addEventListener('submit', formSubmitHandler);
 
